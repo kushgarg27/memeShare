@@ -23,6 +23,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="share"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent" />
@@ -39,11 +43,14 @@
     </ProgressBar>
 
     <Button
+        android:layout_marginRight="5dp"
+
         android:id="@+id/button2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:onClick="nextmeme"
         android:text="next"
+        android:layout_marginLeft="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />

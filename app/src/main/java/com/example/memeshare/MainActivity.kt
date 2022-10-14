@@ -1,5 +1,6 @@
 package com.example.memeshare
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
@@ -19,11 +20,23 @@ import com.example.memeshare.databinding.ActivityMainBinding
 private lateinit var Binding : ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    var currentImageUrl: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(Binding.root)
         loadmeme()
+
+        Binding.button.setOnClickListener()
+        {
+             val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, "Hey checkout this cool meme from memeshare:$currentImageUrl")
+            val chooser= Intent.createChooser(intent, "share this meme link using :")
+            startActivity(chooser)
+
+        }
     }
 
 
@@ -38,8 +51,8 @@ class MainActivity : AppCompatActivity() {
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, url, null,
             Response.Listener { response ->
-                val url = response.getString("url")
-                Glide.with(this).load(url).listener(object : RequestListener<Drawable>{
+                currentImageUrl = response.getString("url")
+                Glide.with(this).load(currentImageUrl).listener(object : RequestListener<Drawable>{
                     override fun onLoadFailed(
                         e: GlideException?,
                         model: Any?,
